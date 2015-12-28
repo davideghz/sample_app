@@ -2,6 +2,5 @@
 
 sample_app
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Ruby 2.2.3
+* Rails 4.2.5
