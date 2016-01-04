@@ -14,7 +14,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'users/new'
     assert_select 'div#error_explanation'
-    assert_select 'div."alert alert-danger"'
   end
 
   test "valid signup information" do
@@ -29,6 +28,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
           password_confirmation: "foobar" }
     end
     assert_template 'users/show'
+    # remember this function is defined for TEST users only. For production/real users we defined logged_in? function.
+    assert is_logged_in?
     assert_not flash.empty?
   end
 
