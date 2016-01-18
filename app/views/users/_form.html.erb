@@ -1,0 +1,18 @@
+<%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
+
+    <!-- removing , "Insert your name" after :name Rails will display Name as label -->
+    <%= f.label :name, "Insert your name" %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :email, "Insert your email" %>
+    <%= f.email_field :email, class: 'form-control' %>
+
+    <%= f.label :password, "Insert a password" %>
+    <%= f.password_field :password, class: 'form-control' %>
+
+    <%= f.label :password_confirmation, "Confirm your password" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
