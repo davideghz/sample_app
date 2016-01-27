@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :microposts, dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -64,11 +65,16 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver_now
   end
 
-
   # Returns true if a password reset has expired.
   # read the below as “Password reset sent earlier than two hours ago.”
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # Defines a proto-feed.
+  def feed
+    # The question mark ensures that id is properly escaped before being included in the underlying SQL query
+    Micropost.where("user_id = ?", id)
   end
 
   private
