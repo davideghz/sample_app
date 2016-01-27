@@ -9,7 +9,7 @@ if Rails.env.production?
         :region                => ENV['S3_REGION']
     }
     config.fog_directory     =  ENV['S3_BUCKET']
-    config.fog_public     = true                                   # optional, defaults to true
-    # config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
+    config.fog_public     = true # optional, make URL public, defaults to true
+    config.fog_attributes = { 'Cache-Control'=>"max-age=#{365.day.to_i}" }  # optional, defaults to {}
   end
 end
